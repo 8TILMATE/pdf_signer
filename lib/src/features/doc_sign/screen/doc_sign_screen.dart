@@ -15,7 +15,7 @@ class DocSignScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return  Scaffold(
       body: Center(
-        child: SfPdfViewer.file(File(globalVariables.pickedFileAsyncGlobal)),
+        child: SfPdfViewer.file(File(globalVariables.pickedFileAsyncGlobal))
       ),
 
       appBar: AppBar(

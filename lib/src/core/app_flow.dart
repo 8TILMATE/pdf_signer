@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pdf_signer/src/features/home_page/services/home_page_file_acces.dart';
 import 'package:pdf_signer/src/features/home_page/providers/home_provider.dart';
@@ -9,6 +10,7 @@ enum AppFlowState{
 }
 class globalVariables {
  static String pickedFileAsyncGlobal = '';
+ List<Widget> pdfWidgets = [];
 }
 final appFlowProvider = StateProvider<AppFlowState>((ref) {
   final pickedFileAsync = ref.watch(pickedFileProvider);

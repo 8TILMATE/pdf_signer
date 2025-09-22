@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pdf_signer/src/core/size_config.dart';
+import 'package:pdf_signer/src/features/doc_sign/widgets/doc_sign_add_text_dialog.dart';
 
 class SigningOptions extends StatefulWidget {
   const SigningOptions({super.key});
@@ -31,7 +32,10 @@ class _SigningOptionsState extends State<SigningOptions>
     return PopupMenuButton(
       onOpened: () => _controller.forward(),
       onCanceled: () => _controller.reverse(),
-      onSelected: (value) => _controller.reverse(),
+      onSelected: (value) {
+        DocSignAddTextDialog().AddText(context);
+        _controller.reverse();
+      },
       itemBuilder: (context) => [
         const PopupMenuItem(
           value: 1,
