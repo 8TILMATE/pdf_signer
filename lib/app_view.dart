@@ -16,7 +16,7 @@ class AppView extends ConsumerWidget {
       case AppFlowState.homePage:
         return const HomePage();
       case AppFlowState.signDocument:
-        return const DocSignScreen();
+        return  DocSignScreen();
       case AppFlowState.exportFile:
         return const Scaffold(
           body: Center(child: Text('Export File Screen')),
