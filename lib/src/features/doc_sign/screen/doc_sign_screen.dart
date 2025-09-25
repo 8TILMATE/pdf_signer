@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
@@ -23,7 +24,16 @@ class DocSignScreen extends ConsumerWidget {
     return  Scaffold(
       body: Center(
         child: Stack(
-          children: [SfPdfViewer.file(File(globalVariables.pickedFileAsyncGlobal),controller: pdfViewerController..addListener(()=>updateOffset(ref)),onDocumentLoaded: (details) =>{ isReady=true, pageSize= getPageSize()}), DocSignMovableObject(data: "TestWidget")],)
+          children: [
+            SfPdfViewer.file(File(globalVariables.pickedFileAsyncGlobal),controller: pdfViewerController..addListener(()=>updateOffset(ref)),onDocumentLoaded: (details) =>{ isReady=true, pageSize= getPageSize()}),
+             DocSignMovableObject(data: "TestWidget",posX: 200,posY: 100,),
+             DocSignMovableObject(data: "TestWidget",posX: 300,posY: 200,),
+             DocSignMovableObject(data: "TestWidget",posX: 400,posY: 100,),
+             DocSignMovableObject(data: "TestWidget",posX: 200,posY: 300,),
+             DocSignMovableObject(data: "TestWidget",posX: 200,posY: 400,),
+             DocSignMovableObject(data: "TestWidget",posX: 200,posY: 500,),
+             DocSignMovableObject(data: "TestWidget",posX: 200,posY: 600,),
+             ],)
       ),
 
       appBar: AppBar(
@@ -60,15 +70,20 @@ class DocSignScreen extends ConsumerWidget {
       floatingActionButton: SigningOptions(),
     );
   }
+
   updateOffset(WidgetRef ref){
-    if(isReady){
-      ref.read(scrolledPDFProvider.notifier).state = DocSignPdfInfoModel(
-        scrollOffset: pdfViewerController.scrollOffset,
-        zoomFactor: pdfViewerController.zoomLevel,
-        currentPage: pdfViewerController.pageNumber,
-        pageSize:  pageSize
-      );
-    }
+    if (!isReady) return;
+
+   // if (_throttle?.isActive ?? false) return;
+
+    //_throttle = Timer(const Duration(milliseconds: 16), () {
+    ref.read(scrolledPDFProvider.notifier).state = DocSignPdfInfoModel(
+      scrollOffset: pdfViewerController.scrollOffset,
+      zoomFactor: pdfViewerController.zoomLevel,
+      currentPage: pdfViewerController.pageNumber,
+      pageSize: pageSize,
+    );
+  //S});
   }
   Offset getPageSize(){
     return Offset(275/3, 450);
