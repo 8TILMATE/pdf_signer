@@ -26,13 +26,13 @@ class DocSignScreen extends ConsumerWidget {
         child: Stack(
           children: [
             SfPdfViewer.file(File(globalVariables.pickedFileAsyncGlobal),controller: pdfViewerController..addListener(()=>updateOffset(ref)),onDocumentLoaded: (details) =>{ isReady=true, pageSize= getPageSize()}),
-             DocSignMovableObject(data: "TestWidget",posX: 200,posY: 100,),
-             DocSignMovableObject(data: "TestWidget",posX: 300,posY: 200,),
-             DocSignMovableObject(data: "TestWidget",posX: 400,posY: 100,),
-             DocSignMovableObject(data: "TestWidget",posX: 200,posY: 300,),
-             DocSignMovableObject(data: "TestWidget",posX: 200,posY: 400,),
-             DocSignMovableObject(data: "TestWidget",posX: 200,posY: 500,),
-             DocSignMovableObject(data: "TestWidget",posX: 200,posY: 600,),
+             DocSignMovableObject(data: "TestWidget1",posX: 200,posY: 100,),
+             DocSignMovableObject(data: "TestWidget2",posX: 300,posY: 200,),
+             DocSignMovableObject(data: "TestWidget3",posX: 400,posY: 100,),
+             DocSignMovableObject(data: "TestWidget4",posX: 200,posY: 300,),
+             DocSignMovableObject(data: "TestWidget5",posX: 200,posY: 400,),
+             DocSignMovableObject(data: "TestWidget6",posX: 200,posY: 500,),
+             DocSignMovableObject(data: "TestWidget7",posX: 200,posY: 600,),
              ],)
       ),
 
@@ -40,6 +40,7 @@ class DocSignScreen extends ConsumerWidget {
         title: Text("Document Signer",style: TextStyle(fontFamily: "Roboto", letterSpacing: .25, fontWeight: FontWeight.w500, color: Colors.white),),
         backgroundColor: Themeconfig().primaryColor,
         centerTitle: true,
+        
         leading: BackButton(
           color: Colors.white,
           onPressed: () {
