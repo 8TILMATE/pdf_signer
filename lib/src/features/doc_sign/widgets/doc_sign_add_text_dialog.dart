@@ -7,7 +7,7 @@ class DocSignAddTextDialog {
   double dialogWidth = SizeConfig.screenWidth/1.05;
   double dialogHeight = SizeConfig.screenWidth/1.6;
   static String enteredText = '';
-  WidgetBuilder dialogBoxText = (BuildContext context){
+  WidgetBuilder _dialogBoxText = (BuildContext context){
     return Dialog(
     shape: RoundedRectangleBorder( borderRadius: BorderRadius.circular(12.0)),
     child: Container(
@@ -59,7 +59,7 @@ class DocSignAddTextDialog {
     ),
   );
   };
-  Future<dynamic> AddText(BuildContext context) {
-    return showDialog(context: context, builder: dialogBoxText);
+  Future<String> AddText(BuildContext context) {
+    return showDialog(context: context, builder: _dialogBoxText).then((_) => enteredText);
   }
 }

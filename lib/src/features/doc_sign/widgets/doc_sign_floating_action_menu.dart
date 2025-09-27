@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pdf_signer/src/core/size_config.dart';
+import 'package:pdf_signer/src/features/doc_sign/providers/doc_sign_pdf_controller_provider.dart';
+import 'package:pdf_signer/src/features/doc_sign/services/doc_sign_widgets_handler.dart';
 import 'package:pdf_signer/src/features/doc_sign/widgets/doc_sign_add_text_dialog.dart';
 
 class SigningOptions extends StatefulWidget {
-  const SigningOptions({super.key});
-
+  const SigningOptions({super.key, required this.ref});
+  final WidgetRef ref;
   @override
   State<SigningOptions> createState() => _SigningOptionsState();
 }
@@ -32,8 +35,9 @@ class _SigningOptionsState extends State<SigningOptions>
     return PopupMenuButton(
       onOpened: () => _controller.forward(),
       onCanceled: () => _controller.reverse(),
-      onSelected: (value) {
-        DocSignAddTextDialog().AddText(context);
+      onSelected: (value) async { 
+        String data = await DocSignAddTextDialog().AddText(context);
+        DocSignWidgetsHandler.addWidget(Offset(200,500 ),"Text", data, widget.ref);
         _controller.reverse();
       },
       itemBuilder: (context) => [
