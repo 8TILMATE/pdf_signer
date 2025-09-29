@@ -23,7 +23,7 @@ class DocSignWidgetsHandler {
     List<Widget> _getWidgets=[];
     for (var element in widgetMap.values()) {
       var obj = element as DocSignObject;
-      _getWidgets.add(DocSignMovableObject(data: obj.data, posX: obj.position.dx, posY: obj.position.dy, Id: widgetMap.inverse(obj)!));
+      _getWidgets.add(DocSignMovableObject(data: obj.data, posX: obj.position.dx, posY: obj.position.dy, Id: widgetMap.inverse(obj)!,objectType: obj.objectType,));
     }
     return _getWidgets;
   }

@@ -8,7 +8,7 @@ class DocSignCanvas extends ConsumerWidget {
   const DocSignCanvas({super.key});
   @override
   Widget build(BuildContext context,WidgetRef ref) {
-    final widgetsUpdated = ref.watch(userAddedWidgetsProvider);
+    final widgetsUpdated  = ref.watch(userAddedWidgetsProvider);
     return Stack(
       children: [
         ...DocSignWidgetsHandler.getCurrentWidgets()

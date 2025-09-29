@@ -20,16 +20,6 @@ class DocSignScreen extends ConsumerWidget {
   bool isReady = false;
   Offset pageSize = Offset(0,0);
   DocSignScreen({super.key});
- /* List<DocSignMovableObject> addedObjects = [             
-             DocSignMovableObject(data: "TestWidget1",posX: 200,posY: 100,),
-             DocSignMovableObject(data: "TestWidget2",posX: 300,posY: 200,),
-             DocSignMovableObject(data: "TestWidget3",posX: 400,posY: 100,),
-             DocSignMovableObject(data: "TestWidget4",posX: 200,posY: 300,),
-             DocSignMovableObject(data: "TestWidget5",posX: 200,posY: 400,),
-             DocSignMovableObject(data: "TestWidget6",posX: 200,posY: 500,),
-             DocSignMovableObject(data: "TestWidget7",posX: 200,posY: 600,),
-            ];
-            */
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return  Scaffold(

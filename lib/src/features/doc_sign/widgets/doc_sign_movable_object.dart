@@ -4,10 +4,10 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pdf_signer/src/features/doc_sign/models/doc_sign_pdf_info_model.dart';
 import 'package:pdf_signer/src/features/doc_sign/providers/doc_sign_pdf_controller_provider.dart';
 import 'package:pdf_signer/src/features/doc_sign/services/doc_sign_add_text_to_pdf.dart';
-
 class DocSignMovableObject extends ConsumerStatefulWidget{
-  DocSignMovableObject({super.key, required this.data, required this.posX, required this.posY,required this.Id});
+  DocSignMovableObject({super.key, required this.data, required this.posX, required this.posY,required this.Id, required this.objectType});
   String data = "";
+  String objectType = "";
   String Id = "";
   double posX=0,posY=0;
   ConsumerState<DocSignMovableObject> createState() => _DocSignMovableObjectState();
@@ -46,8 +46,8 @@ class _DocSignMovableObjectState extends ConsumerState<DocSignMovableObject>{
           Offset newCoords = _docSignAddTextToPdf.dragCoordinatesToPDFCoordinates(pdfInfo, details.offset.dx, details.offset.dy, context); 
           pdfY = newCoords.dy;
           pdfX = newCoords.dx;
-          
           }),
+
     hapticFeedbackOnStart: true,
         child: Text(widget.data),) ),
     );
