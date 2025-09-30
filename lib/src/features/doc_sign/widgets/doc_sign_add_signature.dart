@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:pdf_signer/src/core/size_config.dart';
 import 'package:pdf_signer/src/core/theme_config.dart';
+import 'package:pdf_signer/src/features/doc_sign/services/doc_sign_widgets_handler.dart';
 import 'package:pdf_signer/src/features/doc_sign/widgets/doc_sign_canvas.dart';
 import 'package:pdf_signer/src/features/doc_sign/widgets/doc_sign_signature_canvas.dart';
 
 class DocSignAddSignature {
   double dialogWidth = SizeConfig.screenWidth/1.02;
   double dialogHeight = SizeConfig.screenWidth/1.4;
+  static DocSignSignatureCanvas _docSignSignatureCanvas = DocSignSignatureCanvas();
+  // ignore: prefer_function_declarations_over_variables
   final WidgetBuilder _dialogBoxSignature =(BuildContext context){
     return Dialog(
       shape: RoundedRectangleBorder(borderRadius: BorderRadiusGeometry.circular(12)),
@@ -25,19 +28,25 @@ class DocSignAddSignature {
                 child: Container(
                   height: DocSignAddSignature().dialogHeight/1.7,
                   width:  DocSignAddSignature().dialogWidth/1.08,
-                  child: DocSignSignatureCanvas(),
+                  child: _docSignSignatureCanvas,
                 ),
                 
                 
               ),
-              ElevatedButton(onPressed: (){}, child: Text("Add"))
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  ElevatedButton(onPressed: (){}, child: Text("Add")),
+                  ElevatedButton(onPressed: (){ DocSignWidgetsHandler.destroyDrawing(_docSignSignatureCanvas);}, child: Text("Clear"))
+              ],)
             ],
           ),
         )
       ),
     );
   };
-    Future<dynamic> AddSignature(BuildContext context) {
+  Future<dynamic> AddSignature(BuildContext context) {
+    DocSignWidgetsHandler.destroyDrawing(_docSignSignatureCanvas);
     return showDialog(context: context, builder: _dialogBoxSignature);
   }
 }

@@ -1,15 +1,21 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:pdf_signer/src/features/doc_sign/models/doc_sign_sketch.dart';
+import 'package:pdf_signer/src/features/doc_sign/providers/doc_sign_painter_rebuilds.dart';
 import 'package:pdf_signer/src/features/doc_sign/providers/doc_sign_widgets_provider.dart';
 import 'package:pdf_signer/src/features/doc_sign/models/doc_sign_object.dart';
+import 'package:pdf_signer/src/features/doc_sign/services/doc_sign_drawer.dart';
 import 'package:pdf_signer/src/features/doc_sign/widgets/doc_sign_movable_object.dart';
+import 'package:pdf_signer/src/features/doc_sign/widgets/doc_sign_signature_canvas.dart';
 import 'package:pdf_signer/src/shared/bidirectionalmap.dart';
 import 'package:uid/uid.dart';
 
 class DocSignWidgetsHandler {
+  static List<DocSignSketch> currentSketches = [];
   List<DocSignObject> userAddedWidgets = [];
   static Bidirectionalmap<String,DocSignObject> widgetMap =Bidirectionalmap();
+  final erase = ValueNotifier<int>(0);
   static void addWidget(Offset position, String type, String data,WidgetRef ref){
     String uid = UId.getId(quantityOfRandomString: 4,isCapital: true);
     widgetMap.add(uid, DocSignObject(type, data, position));
@@ -27,5 +33,19 @@ class DocSignWidgetsHandler {
     }
     return _getWidgets;
   }
-
+  static void addPoint(Offset point){
+    currentSketches.last.currentDrawing.add(point);
+  }
+  static void destroyDrawing(DocSignSignatureCanvas owner){
+    currentSketches = List.empty(growable: true);
+    owner.repaintTrigger.value++;
+  }
+    static void destroyDrawing1(WidgetRef ref){
+    currentSketches = List.empty(growable: true);
+    ref.read(repaintsProvider.notifier).state=ref.read(repaintsProvider.notifier).state+1;
+  }
+  static void addSketch()
+  {
+    currentSketches.add(DocSignSketch());
+  }
 }
