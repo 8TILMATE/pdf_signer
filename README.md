@@ -1,16 +1,20 @@
-# pdf_signer
+# PDF Signer
 
-A new Flutter project.
+PDF Signer is a simple, free Flutter app for signing PDF documents quickly, without needing to search through complicated online tools or desktop apps.
 
-## Getting Started
+## Features
 
-This project is a starting point for a Flutter application.
+- Pick a PDF file from your device
+- View the PDF inside the app
+- Add a signature to the document
+- Save/export the signed PDF
+- Cross-platform Flutter structure for Android, iOS, Web, Windows, macOS, and Linux
 
-A few resources to get you started if this is your first Flutter project:
+## Tech Stack
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+- Flutter / Dart
+- Riverpod
+- File Picker
+- Path Provider
+- Syncfusion PDF Viewer
+- Screenshot utilities
